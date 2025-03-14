@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import user from '../icons/users.svg'
+import user from '../icons/ivan.png'
 import '../styles/SidebarStyle.css'
 import dashboard from '../icons/dashboard.svg'
 import chart from '../icons/chart.svg'
@@ -22,7 +22,7 @@ function SidebarComponent() {
             <img src={user} alt="user-icon" />
             <div className="UserData">
                 <span>TU NOMBRE</span>
-                <span>Jonathan Melgar</span>
+                <span>IVAN</span>
             </div>
             {/* AQUI TERMINA LA INFOR DEL OAUTH2.0 */}
         </div>
@@ -35,49 +35,49 @@ function SidebarComponent() {
         <div className="SidebarMenu">
             <ul>
                 <li>
-                    <Link to="/">
+                    <Link to="/" className="Link">
                         <img src={dashboard} alt="inicio-icon" />
                         <span>Inicio</span>
                     </Link>
                 </li>
                 <li>
-                    <Link to="/d1">
+                    <Link to="/d1" className="Link">
                         <img src={chart} alt="D1-icon" />
                         <span>Dimencion 1</span>
                     </Link>
                 </li>
                 <li>
-                    <Link to="/d2">
+                    <Link to="/d2" className="Link">
                         <img src={dolar} alt="D2-icon" />
                         <span>Dimencion 2</span>
                     </Link>
                 </li>
                 <li>
-                    <Link to="/d3">
+                    <Link to="/d3" className="Link">
                         <img src={help} alt="D3-icon" />
                         <span>Dimencion 3</span>
                     </Link>
                 </li>
                 <li>
-                    <Link to="/d4">
+                    <Link to="/d4" className="Link">
                         <img src={music} alt="D4-icon" />
                         <span>Dimencion 4</span>
                     </Link>
                 </li>
                 <li>
-                    <Link to="/d5">
+                    <Link to="/d5" className="Link">
                         <img src={music} alt="D5-icon" />
                         <span>Dimencion 5</span>
                     </Link>
                 </li>
                 <li>
-                    <Link to="/d6">
+                    <Link to="/d6" className="Link">
                         <img src={music} alt="D6-icon" />
                         <span>Dimencion 6</span>
                     </Link>
                 </li>
                 <li>
-                    <Link to="/d7">
+                    <Link to="/d7" className="Link">
                         <img src={music} alt="D7-icon" />
                         <span>Dimencion 7</span>
                     </Link>
@@ -94,7 +94,7 @@ function SidebarComponent() {
         <div className="SidebarFooter">
             <ul>
                 <li>
-                    <Link to="/config">
+                    <Link to="/config" className="Link">
                         <img src={settings} alt="D5-icon" />
                         <span>Configuracion</span>
                     </Link>
@@ -102,6 +102,11 @@ function SidebarComponent() {
             </ul>
         </div>
         {/* SidebarFooter FINAL*/}
+
+
+
+
+
     </div>
   )
 }

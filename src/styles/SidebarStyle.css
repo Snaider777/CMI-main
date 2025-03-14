@@ -15,7 +15,6 @@
 }
 
 .SidebarComponent{
-    border: 2px solid red;
     position: fixed;
     width: 16rem;
     height: 100vh;
@@ -29,7 +28,6 @@
 }
 
 .SidebarHeader{
-    border: 2px solid white;
     padding: 1.2rem 1rem;
     display: flex;
     flex-direction: column;
@@ -66,12 +64,12 @@
 
 .SidebarHeader .UserData span:last-child{
     opacity: 0.5;
+    font-size: 0.7rem;
 }
 
 .SidebarMenu{
-    border: 2px solid green;
     width: 100%; 
-    height: calc(100%-20rem);
+    height: calc(100% - 20rem);
     padding: 0 0.8rem;
     margin-bottom: auto;
     overflow-y: overlay;
@@ -84,7 +82,6 @@
 }
 
 .SidebarComponent li{
-    border: 2px solid green;
     display: flex;
     padding: 0.8rem;
     border-radius: 0.7rem;
@@ -95,4 +92,37 @@
 
 .SidebarComponent li:hover{
     background-color: var(--menu-hover-color);
+}
+
+.SidebarComponent .Link{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    color: var(--primary-color);
+    align-items: center;
+}
+
+.SidebarMenu span, .SidebarFooter span{
+    margin-left: 1.7rem;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    transition: opacity 0.3s ease;
+}
+
+.SidebarFooter{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 7rem;
+    padding: 0.5rem 0.8rem;
+    border-top: 0.1rem solid var(--border-color);
+    overflow: hidden;
+}   
+
+.SidebarMenu::-webkit-scrollbar{
+    width: 0.4rem;
+}
+.SidebarMenu::-webkit-scrollbar-thumb{
+    background-color: var(--scrollbar-thumb-color);
 }
