@@ -21,7 +21,7 @@ function SidebarComponent() {
             {/* AQUI VA LA INFOR DEL OAUTH2.0 */}
             <img src={user} alt="user-icon" />
             <div className="UserData">
-                <span>Tu Nombre</span>
+                <span>TU NOMBRE</span>
                 <span>Jonathan Melgar</span>
             </div>
             {/* AQUI TERMINA LA INFOR DEL OAUTH2.0 */}
@@ -60,8 +60,26 @@ function SidebarComponent() {
                 </li>
                 <li>
                     <Link to="/d4">
-                        <img src={music} alt="D5-icon" />
+                        <img src={music} alt="D4-icon" />
                         <span>Dimencion 4</span>
+                    </Link>
+                </li>
+                <li>
+                    <Link to="/d5">
+                        <img src={music} alt="D5-icon" />
+                        <span>Dimencion 5</span>
+                    </Link>
+                </li>
+                <li>
+                    <Link to="/d6">
+                        <img src={music} alt="D6-icon" />
+                        <span>Dimencion 6</span>
+                    </Link>
+                </li>
+                <li>
+                    <Link to="/d7">
+                        <img src={music} alt="D7-icon" />
+                        <span>Dimencion 7</span>
                     </Link>
                 </li>
             </ul>
