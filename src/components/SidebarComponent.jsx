@@ -43,25 +43,25 @@ function SidebarComponent() {
                 <li>
                     <Link to="/d1">
                         <img src={chart} alt="D1-icon" />
-                        <span>Dimencion 1</span>
+                        <span>Dimensión 1</span>
                     </Link>
                 </li>
                 <li>
                     <Link to="/d2">
                         <img src={dolar} alt="D2-icon" />
-                        <span>Dimencion 2</span>
+                        <span>Dimensión 2</span>
                     </Link>
                 </li>
                 <li>
                     <Link to="/d3">
                         <img src={help} alt="D3-icon" />
-                        <span>Dimencion 3</span>
+                        <span>Dimensión 3</span>
                     </Link>
                 </li>
                 <li>
                     <Link to="/d4">
                         <img src={music} alt="D5-icon" />
-                        <span>Dimencion 4</span>
+                        <span>Dimensión 4</span>
                     </Link>
                 </li>
             </ul>
