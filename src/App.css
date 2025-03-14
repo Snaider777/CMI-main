@@ -1,0 +1,16 @@
+:root {
+    --background-color: #282828;
+    --border-color: #3E3E3E;
+    --primary-color: #fff;
+    --menu-hover-color: #1F1F1F;
+    --scrollbar-thumb-color: #606060;
+    --scrollbar-thumb-hover-color: #555;
+    --black-color: #000;
+    --dark-gray-color: #161616;
+    --white-opacity: rgba(255, 255, 255, 0.7);
+}
+
+
+*{
+    background-color: var(--background-color);
+}
