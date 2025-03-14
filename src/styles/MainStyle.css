@@ -13,3 +13,16 @@
 body{
     background-color: var(--background-color);
 }
+
+main{
+    padding: 5rem 6rem 5rem 18rem;
+    transition: padding 0.3s ease;
+}
+
+.SidebarComponent.closed + main{
+    padding-left: 6rem;
+}
+
+div{
+    color: var(--primary-color);
+}

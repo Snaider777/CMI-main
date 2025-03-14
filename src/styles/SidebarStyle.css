@@ -24,7 +24,11 @@
     flex-direction: column;
     background-color: var(--background-color);
     border-right: 0.1rem solid var(--border-color);
-    transition: whith 0.3 ease;
+    transition: width 0.3s ease;
+}
+
+.SidebarComponent.closed {
+    width: 4.64rem; /* Ancho del sidebar cuando está cerrado */
 }
 
 .SidebarHeader{
@@ -37,12 +41,21 @@
     transition: padding 0.2s ease;
 }
 
+.SidebarComponent.closed .SidebarHeader{
+    padding: 0.9rem 1rem;
+}
+
 .SidebarHeader img{
     width: 7rem;
     height: 7rem;
     object-fit: cover;
     border-radius: 50%;
     transition: width 0.3s ease, height 0.3s ease;
+}
+
+.SidebarComponent.closed .SidebarHeader img{
+    width: 2rem;
+    height: 2rem;
 }
 
 .SidebarHeader .UserData{
@@ -54,6 +67,13 @@
     overflow: hidden;
     opacity: 1;
     transition: all 0.3S ease;
+}
+
+.SidebarComponent.closed .SidebarHeader .UserData{
+    height: 0;
+    gap: 0;
+    margin-top: 0;
+    opacity: 0;
 }
 
 
@@ -75,6 +95,10 @@
     overflow-y: overlay;
     overflow-x: hidden;
     transition: height 0.3s ease;
+}
+
+.SidebarComponent.closed .SidebarMenu{
+    height: calc(100% - 11rem); 
 }
 
 .SidebarMenu img, .SidebarFooter img{
@@ -108,6 +132,10 @@
     font-size: 0.9rem;
     white-space: nowrap;
     transition: opacity 0.3s ease;
+}
+
+.SidebarComponent.closed .SidebarMenu span{
+    opacity: 0;
 }
 
 .SidebarFooter{
