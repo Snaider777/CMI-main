@@ -9,7 +9,7 @@
     justify-content: center;
     background-color: #f3f4f6;
     height: 100vh;
-    background-image: url('../icons/background.jpg');
+    background-image: url('../img/background.jpg');
 }
 
 .login-box {

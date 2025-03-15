@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import menu from '../icons/menu.svg';
-import uso from '../icons/logoUSO.png';
+import uso from '../img/logoUSO.png';
 import lupa from '../icons/search.svg';
 import help from '../icons/help.svg';
 import '../styles/HeaderStyle.css';

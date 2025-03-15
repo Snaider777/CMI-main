@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import user from "../icons/ivan.png";
+import user from "../img/ivan.png";
 import dashboard from "../icons/dashboard.svg";
 import chart from "../icons/chart.svg";
 import dolar from "../icons/dolar.svg";
