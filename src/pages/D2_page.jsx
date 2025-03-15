@@ -3,7 +3,7 @@ import SidebarComponent from "../components/SidebarComponent";
 import MainComponent from "../components/MainComponent";
 import HeaderComponent from "../components/HeaderComponent";
 
-function Dimencion1() {
+function Dimencion2() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false); // Estado para controlar el sidebar
 
   const toggleSidebar = () => {
@@ -11,12 +11,12 @@ function Dimencion1() {
   };
 
   return (
-    <div className="Dimencion1">
+    <div className="Dimencion2">
       <HeaderComponent toggleSidebar={toggleSidebar} />
       <SidebarComponent isSidebarOpen={isSidebarOpen} />
-      <main>DIMENCION 1</main>
+      <main>DIMENCION 2</main>
     </div>
   );
 }
 
-export default Dimencion1;
+export default Dimencion2;
