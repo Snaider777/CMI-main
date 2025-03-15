@@ -32,7 +32,7 @@ return (
         <div className="text-container">
         <h2 className="title">Identifíquese usando su cuenta:</h2>
         <div className="button-container">
-            <button className="Microsoft-Button" onClick={authenticated ? handleLogout : handleLogin}>
+            <button className="microsoft-login-button" onClick={authenticated ? handleLogout : handleLogin}>
                 <img
                     src={LogoM}
                     alt="Microsoft Logo"
