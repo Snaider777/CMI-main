@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import menu from '../icons/menu.svg';
 import uso from '../icons/logoUSO.png';
 import lupa from '../icons/search.svg';
-import sun from '../icons/sun.svg';
+import help from '../icons/help.svg';
 import '../styles/HeaderStyle.css';
 
 function HeaderComponent({ toggleSidebar }) {
@@ -18,6 +18,19 @@ function HeaderComponent({ toggleSidebar }) {
 
   return (
     <>
+      <div className={`search ${isSearchActive ? 'toggle' : ''}`}>
+        <img src={lupa} alt=""/>
+        <input
+          type="text"
+          placeholder="Buscar"
+          onClick={handleSearchClick}
+        />
+      </div>
+      <div
+        className={`searchBackground ${isSearchActive ? 'toggle' : ''}`}
+        onClick={() => setIsSearchActive(false)} // Cierra al hacer clic en el fondo
+      ></div>
+
       <header>
         <div className="left">
           <div className="MenuBtn" onClick={toggleSidebar}>
@@ -29,7 +42,7 @@ function HeaderComponent({ toggleSidebar }) {
 
         <div className="right">
           <img src={lupa} alt="lupa-icon" className="search-icon" onClick={handleSearchClick}/>
-          <img src={sun} alt="help-icon" />
+          <img src={help} alt="help-icon" />
         </div>
       </header>
     </>

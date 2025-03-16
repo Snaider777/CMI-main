@@ -15,8 +15,7 @@ body{
 }
 
 main{
-    padding: 5rem 6rem 5rem 12rem;
-    z-index: 0;
+    padding: 5rem 6rem 5rem 18rem;
     transition: padding 0.3s ease;
 }
 
