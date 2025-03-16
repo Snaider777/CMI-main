@@ -31,6 +31,23 @@ export const login = async () => {
     }
 };
 
+export const getUser = async () => {
+    try {
+    const response = await fetch(`${API_URL}/auth/user`, {
+        method: "GET",
+        credentials: "include",
+    });
+    if (!response.ok) {
+        throw new Error(`Error obteniendo datos del usuario: ${response.statusText}`);
+    }
+    const userData = await response.json();
+    return userData;
+    } catch (error) {
+        console.error("Error en getUser:", error);
+        return null;
+    }
+};
+
 export const logout = async () => {
     try {
         const response = await fetch(`${API_URL}/auth/logout`, {
