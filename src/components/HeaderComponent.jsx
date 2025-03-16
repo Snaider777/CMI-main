@@ -28,7 +28,6 @@ function HeaderComponent({ toggleSidebar }) {
         </div>
 
         <div className="right">
-          <img src={lupa} alt="lupa-icon" className="search-icon" onClick={handleSearchClick}/>
           <img src={sun} alt="help-icon" />
         </div>
       </header>

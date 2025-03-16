@@ -84,17 +84,17 @@ function SidebarComponent({ isSidebarOpen }) {
               <ul className="DropdownMenu">
                 <li>
                   <Link to="/tasks/all" className="DropdownLink">
-                    All Task
+                    Todas las Tareas
                   </Link>
                 </li>
                 <li>
                   <Link to="/tasks/in-progress" className="DropdownLink">
-                    In Progress
+                    En Progreso
                   </Link>
                 </li>
                 <li>
                   <Link to="/tasks/done" className="DropdownLink">
-                    Done
+                    Terminadas
                   </Link>
                 </li>
               </ul>
