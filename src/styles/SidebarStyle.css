@@ -16,7 +16,7 @@
 
 .SidebarComponent{
     position: fixed;
-    width: 16rem;
+    width: 11rem;
     height: 100vh;
     padding-top: 4rem;
     z-index: 5;
@@ -41,57 +41,12 @@
     transition: padding 0.2s ease;
 }
 
-.SidebarComponent.closed .SidebarHeader{
-    padding: 0.9rem 1rem;
-}
-
-.SidebarHeader img{
-    width: 7rem;
-    height: 7rem;
-    object-fit: cover;
-    border-radius: 50%;
-    transition: width 0.3s ease, height 0.3s ease;
-}
-
-.SidebarComponent.closed .SidebarHeader img{
-    width: 2rem;
-    height: 2rem;
-}
-
-.SidebarHeader .UserData{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 1.1rem;
-    gap: 0.3rem;
-    overflow: hidden;
-    opacity: 1;
-    transition: all 0.3S ease;
-}
-
-.SidebarComponent.closed .SidebarHeader .UserData{
-    height: 0;
-    gap: 0;
-    margin-top: 0;
-    opacity: 0;
-}
-
-
-.SidebarHeader .UserData span:first-child{
-    font-weight: 600;
-    font-size: 0.9rem;
-}
-
-.SidebarHeader .UserData span:last-child{
-    opacity: 0.5;
-    font-size: 0.7rem;
-}
-
 .SidebarMenu{
     width: 100%; 
-    height: calc(100% - 20rem);
+    height: calc(100% - 10rem);
     padding: 0 0.8rem;
     margin-bottom: auto;
+    padding-top: 1rem;
     overflow-y: overlay;
     overflow-x: hidden;
     transition: height 0.3s ease;
@@ -107,7 +62,7 @@
 
 .SidebarComponent li{
     display: flex;
-    padding: 0.8rem;
+    padding: 0.5rem;
     border-radius: 0.7rem;
     list-style: none;
     cursor: pointer;
@@ -154,3 +109,46 @@
 .SidebarMenu::-webkit-scrollbar-thumb{
     background-color: var(--scrollbar-thumb-color);
 }
+
+/* Estilos para las listas desplegables */
+.DropdownMenu {
+    list-style: none;
+    padding: 0.5rem 0;
+    margin: 0;
+    background-color: var(--background-color);
+    border: 0.1rem solid var(--border-color);
+    border-radius: 0.5rem;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 8rem;
+    z-index: 10;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+  }
+  
+  .DropdownMenu li {
+    padding: 0.5rem;
+    border-radius: 0.3rem;
+    cursor: pointer;
+  }
+  
+  .DropdownMenu li:hover {
+    background-color: var(--menu-hover-color);
+  }
+  
+  .DropdownLink {
+    text-decoration: none;
+    color: var(--primary-color);
+    font-size: 0.9rem;
+    display: block;
+    width: 100%;
+  }
+  
+  .DropdownLink:hover {
+    color: var(--white-opacity);
+  }
+  
+  /* Asegúrate de que los dropdowns no afecten el diseño cerrado */
+  .SidebarComponent.closed .DropdownMenu {
+    display: none;
+  }
