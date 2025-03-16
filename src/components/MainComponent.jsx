@@ -4,7 +4,7 @@ function MainComponent() {
   return (
     <main>
       <div>
-        main
+    
       </div>
     </main>
   )

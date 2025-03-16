@@ -133,12 +133,12 @@ function SidebarComponent({ isSidebarOpen }) {
       {/* SidebarFooter */}
       <div className="SidebarFooter">
         <ul>
-          <li>
+          {/*<li>
             <Link to="/config" className="Link">
               <img src={settings} alt="D5-icon" />
               <span>Configuracion</span>
             </Link>
-          </li>
+          </li>*/}
         </ul>
       </div>
     </div>
