@@ -13,7 +13,7 @@ function HeaderComponent({ toggleSidebar }) {
   const handleSearchClick = () => {
     setIsSearchActive(prevState => !prevState);
   };
-  // Función para cerrar sesi
+  // Función para cerrar sesiiiiiiiiiion
   const handleLogout = async () => {
     try {
       await logout();
