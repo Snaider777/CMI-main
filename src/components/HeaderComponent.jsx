@@ -1,48 +1,55 @@
-import React, { useState } from 'react';
-import menu from '../icons/menu.svg';
-import uso from '../icons/logoUSO.png';
-import lupa from '../icons/search.svg';
-import help from '../icons/help.svg';
-import '../styles/HeaderStyle.css';
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import menu from "../icons/menu.svg";
+import uso from "../img/logoUSO.png";
+import lupa from "../icons/search.svg";
+import help from "../icons/help.svg";
+import "../styles/HeaderStyle.css";
+import { logout } from "../api/auth";
 
 function HeaderComponent({ toggleSidebar }) {
   const [isSearchActive, setIsSearchActive] = useState(false);
+  const navigate = useNavigate();
 
   const handleSearchClick = () => {
-    setIsSearchActive(!isSearchActive); // Alterna entre true y false
+    setIsSearchActive((prevState) => !prevState);
   };
 
-  const handleOutsideClick = () => {
-    setIsSearchActive(false); // Cierra el buscador al hacer clic fuera
+  const handleLogout = async () => {
+    try {
+      await logout();
+      navigate("/login");
+    } catch (error) {
+      console.error("Error al cerrar sesión:", error);
+    }
   };
 
   return (
     <>
-      <div className={`search ${isSearchActive ? 'toggle' : ''}`}>
-        <img src={lupa} alt=""/>
-        <input
-          type="text"
-          placeholder="Buscar"
-          onClick={handleSearchClick}
-        />
+      <div className={`search ${isSearchActive ? "toggle" : ""}`}>
+        <img src={lupa} alt="Buscar" />
+        <input type="text" placeholder="Buscar" onClick={handleSearchClick} />
       </div>
       <div
-        className={`searchBackground ${isSearchActive ? 'toggle' : ''}`}
-        onClick={() => setIsSearchActive(false)} // Cierra al hacer clic en el fondo
+        className={`searchBackground ${isSearchActive ? "toggle" : ""}`}
+        onClick={() => setIsSearchActive(false)}
       ></div>
-
       <header>
         <div className="left">
           <div className="MenuBtn" onClick={toggleSidebar}>
-            <img src={menu} alt="menu-icon" />
+            <img src={menu} alt="Menú" />
           </div>
-          <img src={uso} alt="uso-icon" className="brand-icon" />
-          <span className="brand-name">ADMINISTRADOR</span>
+          <img src={uso} alt="Logo USO" className="brand-icon" />
+          <span className="brand-name">
+            CMI
+          </span>
         </div>
-
         <div className="right">
-          <img src={lupa} alt="lupa-icon" className="search-icon" onClick={handleSearchClick}/>
-          <img src={help} alt="help-icon" />
+          <img src={lupa} alt="Buscar" className="search-icon" onClick={handleSearchClick} />
+          <img src={help} alt="Ayuda" />
+          <button className="logout-btn" onClick={handleLogout}>
+            Cerrar Sesión
+          </button>
         </div>
       </header>
     </>

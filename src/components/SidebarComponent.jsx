@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import user from "../icons/ivan.png";
+import userimg from "../img/ivan.png";
 import dashboard from "../icons/dashboard.svg";
 import chart from "../icons/chart.svg";
 import dolar from "../icons/dolar.svg";
@@ -8,16 +8,37 @@ import help from "../icons/help.svg";
 import music from "../icons/music.svg";
 import settings from "../icons/settings.svg";
 import "../styles/SidebarStyle.css";
+import { getAuthenticatedUser } from "../api/auth";
 
 function SidebarComponent({ isSidebarOpen }) {
+  const [user, setUser] = useState(null); 
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const userData = await getAuthenticatedUser(); 
+        if (userData) {
+          setUser(userData);
+        } else {
+          setUser(null);
+        }
+      } catch (error) {
+        console.error("Error obteniendo usuario autenticado:", error);
+        setUser(null); 
+      }
+    };
+
+    fetchUser();
+  }, []);
   return (
     <div className={`SidebarComponent ${isSidebarOpen ? "open" : "closed"}`}>
       {/* SidebarHeader */}
       <div className="SidebarHeader">
-        <img src={user} alt="user-icon" />
+        <img src={userimg} alt="user-icon" />
         <div className="UserData">
-          <span>TU NOMBRE</span>
-          <span>IVAN</span>
+          <span className="UserName">
+          {user ? `${user.nombre} (${user.roles.join(", ")})` : "Cargando..."}
+          </span>
         </div>
       </div>
 

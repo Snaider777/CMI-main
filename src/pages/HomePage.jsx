@@ -4,12 +4,10 @@ import MainComponent from "../components/MainComponent";
 import HeaderComponent from "../components/HeaderComponent";
 
 function HomePage() {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false); // Estado para controlar el sidebar
-
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen); // Alterna entre abierto y cerrado
+    setIsSidebarOpen(!isSidebarOpen); 
   };
-
   return (
     <div className="HomePage">
       <HeaderComponent toggleSidebar={toggleSidebar} />
