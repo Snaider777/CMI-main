@@ -73,3 +73,24 @@ export const isAuthenticated = async () => {
         throw error;
     }
 };
+
+export const getAuthenticatedUser = async () => {
+    try {
+        const response = await fetch(`${API_URL}/auth/user`, { 
+            method: "GET",
+            credentials: "include",
+            headers: { "Content-Type": "application/json" },
+        });
+
+        if (!response.ok) {
+            throw new Error(`Error obteniendo usuario autenticado: ${response.status} ${response.statusText}`);
+        }
+
+        const data = await response.json();
+        return data.user;
+    } catch (error) {
+        console.error("Error en getAuthenticatedUser:", error);
+        return null;
+    }
+};
+
