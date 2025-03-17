@@ -9,11 +9,9 @@
     --dark-gray-color: #161616;
     --white-opacity: rgba(255, 255, 255, 0.7);
 }
-
 .SidebarComponent img{
     width: 2rem;
 }
-
 .SidebarComponent{
     position: fixed;
     width: 16rem;
@@ -26,11 +24,9 @@
     border-right: 0.1rem solid var(--border-color);
     transition: width 0.3s ease;
 }
-
 .SidebarComponent.closed {
     width: 4.64rem; /* Ancho del sidebar cuando está cerrado */
 }
-
 .SidebarHeader{
     padding: 1.2rem 1rem;
     display: flex;
@@ -40,11 +36,9 @@
     color: var(--primary-color);
     transition: padding 0.2s ease;
 }
-
 .SidebarComponent.closed .SidebarHeader{
     padding: 0.9rem 1rem;
 }
-
 .SidebarHeader img{
     width: 7rem;
     height: 7rem;
@@ -52,12 +46,10 @@
     border-radius: 50%;
     transition: width 0.3s ease, height 0.3s ease;
 }
-
 .SidebarComponent.closed .SidebarHeader img{
     width: 2rem;
     height: 2rem;
 }
-
 .SidebarHeader .UserData{
     display: flex;
     flex-direction: column;
@@ -68,25 +60,17 @@
     opacity: 1;
     transition: all 0.3S ease;
 }
-
 .SidebarComponent.closed .SidebarHeader .UserData{
     height: 0;
     gap: 0;
     margin-top: 0;
     opacity: 0;
 }
-
-
 .SidebarHeader .UserData span:first-child{
     font-weight: 600;
     font-size: 0.9rem;
+    color: #ffffff;
 }
-
-.SidebarHeader .UserData span:last-child{
-    opacity: 0.5;
-    font-size: 0.7rem;
-}
-
 .SidebarMenu{
     width: 100%; 
     height: calc(100% - 20rem);
@@ -96,15 +80,12 @@
     overflow-x: hidden;
     transition: height 0.3s ease;
 }
-
 .SidebarComponent.closed .SidebarMenu{
     height: calc(100% - 11rem); 
 }
-
 .SidebarMenu img, .SidebarFooter img{
     width: 1.3rem;
 }
-
 .SidebarComponent li{
     display: flex;
     padding: 0.8rem;
@@ -113,11 +94,9 @@
     cursor: pointer;
     position: relative;
 }
-
 .SidebarComponent li:hover{
     background-color: var(--menu-hover-color);
 }
-
 .SidebarComponent .Link{
     display: flex;
     width: 100%;
@@ -126,18 +105,15 @@
     color: var(--primary-color);
     align-items: center;
 }
-
 .SidebarMenu span, .SidebarFooter span{
     margin-left: 1.7rem;
     font-size: 0.9rem;
     white-space: nowrap;
     transition: opacity 0.3s ease;
 }
-
 .SidebarComponent.closed .SidebarMenu span{
     opacity: 0;
 }
-
 .SidebarFooter{
     position: absolute;
     bottom: 0;
@@ -147,7 +123,6 @@
     border-top: 0.1rem solid var(--border-color);
     overflow: hidden;
 }   
-
 .SidebarMenu::-webkit-scrollbar{
     width: 0.4rem;
 }
