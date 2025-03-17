@@ -5,30 +5,11 @@ import uso from "../img/logoUSO.png";
 import lupa from "../icons/search.svg";
 import help from "../icons/help.svg";
 import "../styles/HeaderStyle.css";
-import { logout, getAuthenticatedUser } from "../api/auth";
+import { logout } from "../api/auth";
 
 function HeaderComponent({ toggleSidebar }) {
   const [isSearchActive, setIsSearchActive] = useState(false);
-  const [user, setUser] = useState(null); 
   const navigate = useNavigate();
-
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const userData = await getAuthenticatedUser(); 
-        if (userData) {
-          setUser(userData);
-        } else {
-          setUser(null);
-        }
-      } catch (error) {
-        console.error("Error obteniendo usuario autenticado:", error);
-        setUser(null); 
-      }
-    };
-
-    fetchUser();
-  }, []);
 
   const handleSearchClick = () => {
     setIsSearchActive((prevState) => !prevState);
@@ -60,7 +41,7 @@ function HeaderComponent({ toggleSidebar }) {
           </div>
           <img src={uso} alt="Logo USO" className="brand-icon" />
           <span className="brand-name">
-            {user ? `${user.nombre} (${user.roles.join(", ")})` : "Cargando..."}
+            CMI
           </span>
         </div>
         <div className="right">
