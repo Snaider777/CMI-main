@@ -10,6 +10,8 @@
     --user-bg-color: #FAFAFC;
 }
 
+
+/*ESTILOS GOBLAES PARA SIDEBAR*/
 .SidebarComponent{
     position: fixed;
     display: flex;
@@ -24,11 +26,12 @@
     transition: width 0.5s ease;
 }
 
+
+/*V - INICIO*/
 .Header{
     width: 100%;
-
 }
-
+/*MENU BUTTON - INICIO*/
 .menu-btn{
     position: absolute;
     top: 3.5%;
@@ -45,11 +48,11 @@
     cursor: pointer;
     transition: right 0.3s ease;
 }
-
 .menu-btn i{
     font-size: 1.5rem;
 }
-
+/*MENU BUTTON - FINAL*/
+/*TITULO Y LOGO - INICIO*/
 .brand{
     width: 100%;
     display: flex;
@@ -59,24 +62,26 @@
     margin-bottom: 1.8rem;
     overflow: hidden;
 }
-
 .brand img{
     width: 2rem;
 }
-
 .brand span{
     font-size: 1.1rem;
     font-weight: 600;
     color: var(--color-text-primary);
 }
+/*TITULO Y LOGO- FINAL*/
+/*ESTILOS DEL LOGO, EL TITULO Y EL ICONO - FINAL*/
 
+
+/*ESTILOS DEL CONTENEDOR DE MENU - INICIO*/
 .MenuContainer{
     display: flex;
     height: 100%;
     flex-direction: column;
     align-items: center;
 }
-
+/*BUCADOR - INICIO*/
 .search{
     display: flex;
     width: 100%;
@@ -87,21 +92,17 @@
     cursor: pointer;
     transition: box-shadow 0.5s ease;
 } 
-
 .search:hover{
     box-shadow: 0 0 0 1px var(--color-text-primary);
 }
-
 .search i{
     font-size: 1.35rem;
     color: var(--color-text-secondary);
     padding: 0 0.8rem;
 }
-
 .search i:hover{
     color: var(--color-text-primary);
 }
-
 .search input{
     width: 70%;
     border: none;
@@ -109,7 +110,7 @@
     background-color: transparent;
     color: var(--color-text-primary);
 }
-
+/*BUCADOR - FINAL*/
 .menu{
     width: 100%;
     display: flex;
@@ -117,13 +118,11 @@
     gap: 0.5rem;
     cursor: pointer;
 }
-
 .menu .menu-item{
     position: relative;
     list-style: none;
     overflow: hidden;
 }
-
 .menu .menu-link{
     display: flex;
     padding: 0.55rem;
@@ -131,32 +130,23 @@
     text-decoration: none;
     border-radius: 0.3rem;
 }
-
 .menu-item:hover .menu-link, 
 .sub-menu .Sub-menu-link:hover,
 .menu-item.active .menu-link{
     color: var(--color-text-primary);
     background-color: var(--color-bg);
 }
-
 .menu-link i{
     font-size: 1.35rem;
     padding: 0 0.8rem;
 }
-
 .menu-link i:last-child{
     margin-left: auto;
 }
-
 .menu-link span{
     font-size: 0.8rem;
     font-weight: 500;
 }
-
-
-
-
-
 .sub-menu .Sub-menu-link{
     display: flex;
     margin-left: 2.5rem;
@@ -167,8 +157,6 @@
     text-decoration: none;
     border-radius: 0.3rem;
 }
-
-
 .sub-menu::before{
     content: '';
     position: absolute;
@@ -177,50 +165,44 @@
     margin-left: 1.4rem;
     background-color: var(--color-border);
 }
+/*ESTILOS DEL CONTENEDOR DE MENU - FINAL*/
 
-
+/*ESTILOS DEL FOOTER - INICIO*/
 .footer{
     width: 100%;
     padding: 1rem 0;
     box-shadow: 0 -0.02rem 0 0 var(--color-border);
 }
-
 .user{
     display: flex;
     overflow: hidden;
     margin-top: 1rem;
 }
-
 .user-img{
     display: flex;
     margin: 0 0.7rem 0 0.35rem;
 }
-
 .user-img img{
     width: 2.2rem;
     height: 2.2rem;
     object-fit: cover;
     border-radius: 50%;
 }
-
 .user-data{
     display: flex;
     flex-direction: column;
     overflow: hidden;
     white-space: nowrap;
 }
-
 .name{
     font-size: 0.8rem;
     font-weight: 600;
     color: var(--color-text-primary);
 }
-
 .email{
     font-size: 0.7rem;
     color: var(--color-text-secondary);
 }
-
 .user-icon{
     margin-left: auto;
     display: flex;
@@ -229,3 +211,4 @@
     font-size: 1.5rem;
     color: var(--color-text-secondary);
 }
+/*ESTILOS DEL FOOTER - FINAL*/
