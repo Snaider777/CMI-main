@@ -13,13 +13,12 @@
 
 /*ESTILOS GOBLAES PARA SIDEBAR*/
 .SidebarComponent{
-    position: fixed;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
     width: 15rem;
-    height: 100%;
+    height: 100vh;
     padding: 1.4rem 1rem 0 1rem;
     background-color: var(--color-surface);
     box-shadow: 1px 0px 10px var(--shadow-border);
@@ -30,6 +29,7 @@
 /*V - INICIO*/
 .Header{
     width: 100%;
+    position: relative;
 }
 /*MENU BUTTON - INICIO*/
 .menu-btn{
