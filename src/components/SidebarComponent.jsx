@@ -1,112 +1,141 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import userimg from "../img/ivan.png";
-import dashboard from "../icons/dashboard.svg";
-import chart from "../icons/chart.svg";
-import dolar from "../icons/dolar.svg";
-import help from "../icons/help.svg";
-import music from "../icons/music.svg";
-import settings from "../icons/settings.svg";
-import "../styles/SidebarStyle.css";
-import { getAuthenticatedUser } from "../api/auth";
+import React from 'react';
+import '../styles/SidebarStyle.css';
+import 'boxicons/css/boxicons.min.css';
+import { Link } from 'react-router-dom';
+import LOGO from '../icons/logoUSO.png';
+import user from '../icons/user.png';
 
-function SidebarComponent({ isSidebarOpen }) {
-  const [user, setUser] = useState(null); 
-
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const userData = await getAuthenticatedUser(); 
-        if (userData) {
-          setUser(userData);
-        } else {
-          setUser(null);
-        }
-      } catch (error) {
-        console.error("Error obteniendo usuario autenticado:", error);
-        setUser(null); 
-      }
-    };
-
-    fetchUser();
-  }, []);
+function SidebarComponent() {
   return (
-    <div className={`SidebarComponent ${isSidebarOpen ? "open" : "closed"}`}>
-      {/* SidebarHeader */}
-      <div className="SidebarHeader">
-        <img src={userimg} alt="user-icon" />
-        <div className="UserData">
-          <span className="UserName">
-          {user ? `${user.nombre} (${user.roles.join(", ")})` : "Cargando..."}
-          </span>
+    
+    <div className="SidebarComponent open">
+
+      {/*HEADER DEL SIDEBAR CON EL LOGO Y EL BOTON DE MENU - INICIO*/}
+      <div className="Header">
+        <div className="menu-btn">
+          <i className="bx bx-chevron-left"></i>
+        </div>
+        <div className="brand">
+          <img src={LOGO} alt="logo" />
+          <span>Admin</span>
         </div>
       </div>
+      {/*HEADER DEL SIDEBAR CON EL LOGO Y EL BOTON DE MENU - FIN*/}
 
-      {/* SidebarMenu */}
-      <div className="SidebarMenu">
-        <ul>
-          <li>
-            <Link to="/" className="Link">
-              <img src={dashboard} alt="inicio-icon" />
+
+      {/*CONTENIDO DEL SIDEBAR - INICIO*/}
+      <div className="MenuContainer">
+
+        {/*BUSCADOR - INICIO*/}
+        <div className="search">
+          <i className="bx bx-search"></i>
+          <input type="search" placeholder="Search" />
+        </div>
+        {/*BUSCADOR - FIN*/}
+
+
+        {/*MENU - HOME INICIO*/}
+        <ul className="menu">
+          <li className="menu-item menu-item-static active">
+            <Link to="/" className="menu-link">
+              <i className="bx bx-home-alt-2"></i>
               <span>Inicio</span>
             </Link>
           </li>
-          <li>
-            <Link to="/d1" className="Link">
-              <img src={chart} alt="D1-icon" />
-              <span>Dimencion 1</span>
-            </Link>
-          </li>
-          <li>
-            <Link to="/d2" className="Link">
-              <img src={dolar} alt="D2-icon" />
-              <span>Dimencion 2</span>
-            </Link>
-          </li>
-          <li>
-            <Link to="/d3" className="Link">
-              <img src={help} alt="D3-icon" />
-              <span>Dimencion 3</span>
-            </Link>
-          </li>
-          <li>
-            <Link to="/d4" className="Link">
-              <img src={music} alt="D4-icon" />
-              <span>Dimencion 4</span>
-            </Link>
-          </li>
-          <li>
-            <Link to="/d5" className="Link">
-              <img src={music} alt="D5-icon" />
-              <span>Dimencion 5</span>
-            </Link>
-          </li>
-          <li>
-            <Link to="/d6" className="Link">
-              <img src={music} alt="D6-icon" />
-              <span>Dimencion 6</span>
-            </Link>
-          </li>
-          <li>
-            <Link to="/d7" className="Link">
-              <img src={music} alt="D7-icon" />
-              <span>Dimencion 7</span>
-            </Link>
-          </li>
-        </ul>
-      </div>
+          {/*MENU - HOME FIN*/}
 
-      {/* SidebarFooter */}
-      <div className="SidebarFooter">
-        <ul>
-          <li>
-            <Link to="/config" className="Link">
-              <img src={settings} alt="D5-icon" />
-              <span>Configuracion</span>
+          {/*MENU - PANEL INICIO*/}
+          <li className="menu-item menu-item-static">
+            <Link to="/Dashboard" className="menu-link">
+              <i className="bx bx-bar-chart-alt-2"></i>
+              <span>Panel</span>
+            </Link>
+          </li>
+          {/*MENU - PANEL FIN*/}
+            
+          {/*MENU - USUARIOS INICIO*/}
+          <li className="menu-item menu-item-dropdown">
+            <div className="menu-link">
+              <i class='bx bx-user' ></i>
+              <span>Usuarios</span>
+              <i className="bx bx-chevron-down"></i>
+            </div>
+            <ul className="sub-menu">
+              <li>
+                <Link className="Sub-menu-link">Mi perfil</Link>
+              </li>
+              <li>
+                <Link className="Sub-menu-link">Crear nuevo usuario</Link>
+              </li>
+              <li>
+                <Link className="Sub-menu-link">Roles y Permisos</Link>
+              </li>
+            </ul>
+          </li>
+          {/*MENU - USUARIOS FIN*/}
+            
+
+          {/*MENU - TAREAS INICIO*/}
+          <li className="menu-item menu-item-dropdown">
+            <div className="menu-link">
+              <i className="bx bx-task"></i>
+              <span>Tareas</span>
+              <i className="bx bx-chevron-down"></i>
+            </div>
+            <ul className="sub-menu">
+              <li>
+                <Link className="Sub-menu-link">En progreso</Link>
+              </li>
+              <li>
+                <Link className="Sub-menu-link">Terminadas</Link>
+              </li>
+            </ul>
+          </li>
+          {/*MENU - TAREAS FIN*/}
+
+
+          
+        </ul>
+        {/*MENU - HOME FINAL*/}
+
+
+
+      </div>
+      {/*CONTENIDO DEL SIDEBAR - FIN*/}
+
+
+      {/*CONTENIDO DEL FOOTER - INICIO*/}
+      <div className="footer">
+        <ul className="menu">
+          <li className="menu-item menu-item-static">
+            <Link to="/" className="menu-link">
+              <i className="bx bx-bell"></i>
+              <span>Notificaciones</span>
+            </Link>
+          </li>
+          <li className="menu-item menu-item-static">
+            <Link to="/Dashboard" className="menu-link">
+              <i className="bx bx-cog"></i>
+              <span>Ajustes</span>
             </Link>
           </li>
         </ul>
+        <div className="user">
+          <div className="user-img">
+            <img src={user} alt="" />
+          </div>
+          <div className="user-data">
+            <span className="name">Jonathan</span>
+            <span className="email">hola@uso.com</span>
+          </div>
+          <div className="user-icon">
+            <i className="bx bx-exit"></i>
+          </div>
+        </div>
       </div>
+      {/*CONTENIDO DEL FOOTER - FIN*/}
+
+
     </div>
   );
 }
