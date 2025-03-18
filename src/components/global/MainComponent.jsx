@@ -7,10 +7,10 @@ import '../../styles/MainStyle.css'
 function MainComponent() {
   return (
     <div className='MainComponent'>
-        <Routes>
+      <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/oe" element={<OE_Page />} />
-        </Routes>
+      </Routes>
     </div>
     
   )
