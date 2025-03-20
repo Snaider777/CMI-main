@@ -1,0 +1,6 @@
+.OE_chart{
+    min-width: 500px;
+}
+rect{
+    cursor: pointer;
+}
