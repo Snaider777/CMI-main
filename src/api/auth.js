@@ -73,7 +73,6 @@ export const isAuthenticated = async () => {
         throw error;
     }
 };
-
 export const getAuthenticatedUser = async () => {
     try {
         const response = await fetch(`${API_URL}/auth/user`, { 
