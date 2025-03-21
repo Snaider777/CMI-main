@@ -14,6 +14,8 @@
 /*ESTILOS GOBLAES PARA SIDEBAR*/
 .SidebarComponent{
     display: flex;
+    overflow: hidden;
+    flex-shrink: 0;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
@@ -209,6 +211,7 @@
     align-items: center;
     justify-content: center;
     font-size: 1.5rem;
+    cursor: pointer;
     color: var(--color-text-secondary);
 }
 /*ESTILOS DEL FOOTER - FINAL*/

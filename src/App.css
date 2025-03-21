@@ -1,4 +1,6 @@
-.App{
-    display: flex;
-    flex-direction: row;
+.App {
+  display: flex;
+  height: 100vh; /* Asegura que ocupe toda la altura de la ventana */
+  overflow: hidden; /* Evita que el contenedor principal tenga scroll */
 }
+ 
