@@ -1,13 +1,20 @@
 
 .OE_card{
-    width: 500px;
+    width: 400px;
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
     padding: 20px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    align-items: center;
     text-align: center;
     position: relative;
+}
+
+.line{
+    width: 90%;
+    height: 1.2px;
+    background-color: #9A9EB2;
+    margin: 20px 0;
 }
