@@ -1,310 +1,319 @@
 import React from 'react';
-import '../styles/InicioStyle.css';
-import 'boxicons/css/boxicons.min.css';
-import { makeData } from '../Js/MakeData';
 import {
   useReactTable,
   getCoreRowModel,
-  getPaginationRowModel,
-  getFilteredRowModel,
   getExpandedRowModel,
   flexRender,
 } from '@tanstack/react-table';
+import { Link } from 'react-router-dom';
+import { makeData } from '../Js/MakeData';
+import "../styles/TreeGridTable.css";
 
-function Inicio() {
-  const rerender = React.useReducer(() => ({}), {})[1];
-
+function TreeGrid() {
+  // Generamos los datos iniciales y asignamos un código a cada registro
+  const [data, setData] = React.useState(() => {
+    const rawData = makeData(10, 2, 2);
+    return assignIds(rawData);
+  });
+  const [expanded, setExpanded] = React.useState({});
+  // Asigna IDs y códigos jerárquicos a cada registro recursivamente.
+  function assignIds(rows, parentId = "") {
+    return rows.map((row, index) => {
+      const newId = parentId ? `${parentId}.${index + 1}` : `${index + 1}`;
+      return {
+        ...row,
+        id: newId,
+        codigo: newId, // Usamos el mismo código para la ruta
+        subRows:
+          row.subRows && row.subRows.length > 0
+            ? assignIds(row.subRows, newId)
+            : [],
+      };
+    });
+  }
+  // Función para actualizar un registro por ID 
+  const updateRowById = (rows, id, updater) => {
+    return rows.map((row) => {
+      if (row.id === id) return updater(row);
+      if (row.subRows && row.subRows.length > 0) {
+        return { ...row, subRows: updateRowById(row.subRows, id, updater) };
+      }
+      return row;
+    });
+  };
+  // Agregar un registro a nivel superior.
+  const handleGlobalCreate = () => {
+    const newRow = {
+      id: Date.now().toString(),
+      codigo: Date.now().toString(),
+      firstName: "Nuevo Objetivo",
+      status: "Pendiente",
+      subRows: [],
+    };
+    setData((prev) => [...prev, newRow]);
+  };
+  // Agregar un subregistro (hijo) al registro padre.
+  const handleCreate = (parentRow) => {
+    const newChild = {
+      id: Date.now().toString(),
+      codigo: parentRow.id + "." + (parentRow.subRows.length + 1).toString(),
+      firstName: "Nuevo Subobjetivo",
+      status: "Pendiente",
+      subRows: [],
+    };
+    setData((prevData) =>
+      updateRowById(prevData, parentRow.id, (row) => ({
+        ...row,
+        subRows: [...(row.subRows || []), newChild],
+      }))
+    );
+  };
+  // Editar el nombre del objetivo mediante un prompt.
+  const handleEdit = (row) => {
+    const newName = prompt("Editar OBJETIVO", row.firstName);
+    if (newName !== null) {
+      setData((prevData) =>
+        updateRowById(prevData, row.id, (r) => ({ ...r, firstName: newName }))
+      );
+    }
+  };
+  // Eliminar un registro recursivamente.
+  const removeRowById = (rows, id) => {
+    return rows.reduce((acc, row) => {
+      if (row.id === id) return acc; // Si coincide, omitirlo.
+      let newSubRows = [];
+      if (row.subRows && row.subRows.length > 0) {
+        newSubRows = removeRowById(row.subRows, id);
+      }
+      acc.push({ ...row, subRows: newSubRows });
+      return acc;
+    }, []);
+  };
+  const handleDelete = (row) => {
+    if (window.confirm("¿Seguro que deseas eliminar este registro?")) {
+      setData((prevData) => removeRowById(prevData, row.id));
+    }
+  };
   const columns = React.useMemo(
     () => [
       {
-        accessorKey: 'firstName',
-        header: ({ table }) => (
-          <>
-            <IndeterminateCheckbox
-              {...{
-                checked: table.getIsAllRowsSelected(),
-                indeterminate: table.getIsSomeRowsSelected(),
-                onChange: table.getToggleAllRowsSelectedHandler(),
-              }}
-            />{' '}
-            <button
-              {...{
-                onClick: table.getToggleAllRowsExpandedHandler(),
-              }}
-            >
-              {table.getIsAllRowsExpanded() ? '👇' : '👉'}
-            </button>{' '}
-            First Name
-          </>
-        ),
+        header: "N°",
+        id: "index",
+        cell: ({ row }) => row.index + 1,
+        size: 50,
+      },
+      {
+        accessorKey: "firstName",
+        header: "OBJETIVOS",
         cell: ({ row, getValue }) => (
-          <div
-            style={{
-              paddingLeft: `${row.depth * 2}rem`,
-            }}
-          >
-            <div>
-              <IndeterminateCheckbox
-                {...{
-                  checked: row.getIsSelected(),
-                  indeterminate: row.getIsSomeSelected(),
-                  onChange: row.getToggleSelectedHandler(),
-                }}
-              />{' '}
-              {row.getCanExpand() ? (
-                <button
-                  {...{
-                    onClick: row.getToggleExpandedHandler(),
-                    style: { cursor: 'pointer' },
-                  }}
-                >
-                  {row.getIsExpanded() ? '👇' : '👉'}
-                </button>
-              ) : (
-                '🔵'
-              )}{' '}
+          <div className="obj-cell" style={{ paddingLeft: `${row.depth * 20}px` }}>
+            {row.getCanExpand() && (
+              <button onClick={row.getToggleExpandedHandler()} className="expand-btn">
+                {row.getIsExpanded() ? "-" : "+"}
+              </button>
+            )}
+            <Link to={`/objetivo/${row.original.codigo}`} className="obj-link">
               {getValue()}
+            </Link>
+            <div className="crud-buttons">
+              <button onClick={() => handleCreate(row.original)} className="btn btn-create">
+                Crear
+              </button>
+              <button onClick={() => handleEdit(row.original)} className="btn btn-edit">
+                Editar
+              </button>
+              <button onClick={() => handleDelete(row.original)} className="btn btn-delete">
+                Eliminar
+              </button>
             </div>
           </div>
         ),
-        footer: (props) => props.column.id,
+        minSize: 150,
       },
       {
-        accessorFn: (row) => row.lastName,
-        id: 'lastName',
-        cell: (info) => info.getValue(),
-        header: () => <span>Last Name</span>,
-        footer: (props) => props.column.id,
+        accessorKey: "fechaCreacion",
+        header: "FECHA DE CREACION",
+        cell: ({ getValue }) => {
+          const date = new Date(getValue());
+          return <span>{date.toLocaleDateString()}</span>;
+        },
+        minSize: 130,
       },
       {
-        accessorKey: 'age',
-        header: () => 'Age',
-        footer: (props) => props.column.id,
+        accessorKey: "lastName",
+        header: "AUTOR",
+        cell: ({ row, getValue }) => (
+          <span
+            onDoubleClick={() => {
+              const nuevoApellido = prompt("Editar Apellido", getValue());
+              if (nuevoApellido !== null) {
+                setData((prevData) =>
+                  updateRowById(prevData, row.original.id, (r) => ({
+                    ...r,
+                    lastName: nuevoApellido,
+                  }))
+                );
+              }
+            }}
+            style={{ cursor: 'pointer' }}
+          >
+            {getValue()}
+          </span>
+        ),
+        minSize: 100,
       },
       {
-        accessorKey: 'visits',
-        header: () => <span>Visits</span>,
-        footer: (props) => props.column.id,
+        accessorKey: "progress",
+        header: "Porcentaje (%)",
+        cell: ({ row, getValue }) => (
+          <input
+            type="number"
+            value={getValue()}
+            onChange={(e) => {
+              const nuevoValor = parseInt(e.target.value, 10) || 0;
+              setData((prevData) =>
+                updateRowById(prevData, row.original.id, (r) => ({
+                  ...r,
+                  progress: nuevoValor,
+                }))
+              );
+            }}
+            style={{ width: '50px' }}
+          />
+        ),
+        minSize: 100,
       },
       {
-        accessorKey: 'status',
-        header: 'Status',
-        footer: (props) => props.column.id,
-      },
-      {
-        accessorKey: 'progress',
-        header: 'Profile Progress',
-        footer: (props) => props.column.id,
+        accessorKey: "include",
+        header: "Incluir",
+        cell: ({ row, getValue }) => {
+          // Solo mostramos el checkbox en subcomponentes
+          if (row.depth === 0) {
+            if (row.depth > 0) {
+              return (
+                <input
+                  type="number"
+                  value={getValue()}
+                  onChange={(e) => {
+                    const nuevoValor = parseInt(e.target.value, 10) || 0;
+                    setData((prevData) =>
+                      updateRowById(prevData, row.original.id, (r) => ({
+                        ...r,
+                        progress: nuevoValor,
+                      }))
+                    );
+                  }}
+                  style={{ width: '50px' }}
+                />
+              );
+            } else {
+              // Si es el objetivo principal (depth === 0), calculamos la suma de subcomponentes marcados
+              const totalSubcomponentes = computeSubcomponentProgress(row.original);
+              return <span>{totalSubcomponentes}%</span>;
+            } // Oculta en el objetivo principal
+          }
+          return (
+            <input
+              type="checkbox"
+              checked={!!getValue()}
+              onChange={(e) => {
+                const nuevoValor = e.target.checked;
+                setData((prevData) =>
+                  updateRowById(prevData, row.original.id, (r) => ({
+                    ...r,
+                    include: nuevoValor,
+                  }))
+                );
+              }}
+              style={{ width: '20px', height: '20px' }}
+            />
+          );
+        },
+        size: 80,
       },
     ],
     []
   );
-
-  const [data, setData] = React.useState(() => makeData(100, 5, 3));
-  const refreshData = () => setData(() => makeData(100, 5, 3));
-
-  const [expanded, setExpanded] = React.useState({});
-
+  const computeSubcomponentProgress = (rowData) => {
+    let total = 0;
+    // Recorre recursivamente todos los subRows
+    const traverse = (nodes) => {
+      nodes.forEach((node) => {
+        if (node.include) {
+          // Suma el valor de progress
+          total += node.progress || 0;
+        }
+        if (node.subRows && node.subRows.length > 0) {
+          traverse(node.subRows);
+        }
+      });
+    };
+    if (rowData.subRows && rowData.subRows.length > 0) {
+      traverse(rowData.subRows);
+    }
+    return total;
+  };
+  const calculateTotalProgress = (rows) => {
+    let total = 0, count = 0;
+    const traverse = (data) => {
+      data.forEach(row => {
+        // Solo se suma si 'include' es verdadero
+        if (row.include) {
+          total += row.progress || 0;
+          count++;
+        }
+        if (row.subRows && row.subRows.length > 0) {
+          traverse(row.subRows);
+        }
+      });
+    };
+    traverse(rows);
+    return count ? Math.round(total / count) : 0;
+  };
   const table = useReactTable({
     data,
     columns,
-    state: {
-      expanded,
-    },
+    state: { expanded },
     onExpandedChange: setExpanded,
-    getSubRows: (row) => row.subRows,
     getCoreRowModel: getCoreRowModel(),
-    getPaginationRowModel: getPaginationRowModel(),
-    getFilteredRowModel: getFilteredRowModel(),
     getExpandedRowModel: getExpandedRowModel(),
-    debugTable: true,
+    getSubRows: (row) => row.subRows,
   });
-
   return (
-    <div className="Inicio">
-      <div className="p-2">
-        <div className="h-2" />
-        <table>
-          <thead>
-            {table.getHeaderGroups().map((headerGroup) => (
-              <tr key={headerGroup.id}>
-                {headerGroup.headers.map((header) => {
-                  return (
-                    <th key={header.id} colSpan={header.colSpan}>
-                      {header.isPlaceholder ? null : (
-                        <div>
-                          {flexRender(
-                            header.column.columnDef.header,
-                            header.getContext()
-                          )}
-                          {header.column.getCanFilter() ? (
-                            <div>
-                              <Filter column={header.column} table={table} />
-                            </div>
-                          ) : null}
-                        </div>
-                      )}
-                    </th>
-                  );
-                })}
-              </tr>
-            ))}
-          </thead>
-          <tbody>
-            {table.getRowModel().rows.map((row) => {
-              return (
-                <tr key={row.id}>
-                  {row.getVisibleCells().map((cell) => {
-                    return (
-                      <td key={cell.id}>
-                        {flexRender(
-                          cell.column.columnDef.cell,
-                          cell.getContext()
-                        )}
-                      </td>
-                    );
-                  })}
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-        <div className="h-2" />
-        <div className="flex items-center gap-2">
-          <button
-            className="border rounded p-1"
-            onClick={() => table.setPageIndex(0)}
-            disabled={!table.getCanPreviousPage()}
-          >
-            {'<<'}
-          </button>
-          <button
-            className="border rounded p-1"
-            onClick={() => table.previousPage()}
-            disabled={!table.getCanPreviousPage()}
-          >
-            {'<'}
-          </button>
-          <button
-            className="border rounded p-1"
-            onClick={() => table.nextPage()}
-            disabled={!table.getCanNextPage()}
-          >
-            {'>'}
-          </button>
-          <button
-            className="border rounded p-1"
-            onClick={() => table.setPageIndex(table.getPageCount() - 1)}
-            disabled={!table.getCanNextPage()}
-          >
-            {'>>'}
-          </button>
-          <span className="flex items-center gap-1">
-            <div>Page</div>
-            <strong>
-              {table.getState().pagination.pageIndex + 1} of{' '}
-              {table.getPageCount()}
-            </strong>
-          </span>
-          <span className="flex items-center gap-1">
-            | Go to page:
-            <input
-              type="number"
-              min="1"
-              max={table.getPageCount()}
-              defaultValue={table.getState().pagination.pageIndex + 1}
-              onChange={(e) => {
-                const page = e.target.value ? Number(e.target.value) - 1 : 0;
-                table.setPageIndex(page);
-              }}
-              className="border p-1 rounded w-16"
-            />
-          </span>
-          <select
-            value={table.getState().pagination.pageSize}
-            onChange={(e) => {
-              table.setPageSize(Number(e.target.value));
-            }}
-          >
-            {[10, 20, 30, 40, 50].map((pageSize) => (
-              <option key={pageSize} value={pageSize}>
-                Show {pageSize}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div>{table.getRowModel().rows.length} Rows</div>
-        <div>
-          <button onClick={() => rerender()}>Force Rerender</button>
-        </div>
-        <div>
-          <button onClick={() => refreshData()}>Refresh Data</button>
-        </div>
-        <label>Expanded State:</label>
-        <pre>{JSON.stringify(expanded, null, 2)}</pre>
-        <label>Row Selection State:</label>
-        <pre>{JSON.stringify(table.getState().rowSelection, null, 2)}</pre>
+    <div className="treegrid-container">
+      <div className="toolbar">
+        <button onClick={handleGlobalCreate} className="btn btn-global-create">
+          Agregar Objetivo
+        </button>
+      </div>
+      <table className="treegrid-table">
+        <thead>
+          {table.getHeaderGroups().map((headerGroup) => (
+            <tr key={headerGroup.id} className="treegrid-header-row">
+              {headerGroup.headers.map((header) => (
+                <th key={header.id} colSpan={header.colSpan} className="treegrid-header-cell">
+                  {flexRender(header.column.columnDef.header, header.getContext())}
+                </th>
+              ))}
+            </tr>
+          ))}
+        </thead>
+        <tbody>
+          {table.getRowModel().rows.map((row) => (
+            <tr key={row.id} className="treegrid-row">
+              {row.getVisibleCells().map((cell) => (
+                <td key={cell.id} className="treegrid-cell">
+                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <div className="total-progress">
+        Porcentaje total alcanzado: {calculateTotalProgress(data)}%
       </div>
     </div>
   );
 }
-
-function Filter({ column, table }) {
-  const firstValue = table
-    .getPreFilteredRowModel()
-    .flatRows[0]?.getValue(column.id);
-
-  const columnFilterValue = column.getFilterValue();
-
-  return typeof firstValue === 'number' ? (
-    <div className="flex space-x-2">
-      <input
-        type="number"
-        value={columnFilterValue?.[0] ?? ''}
-        onChange={(e) =>
-          column.setFilterValue((old) => [e.target.value, old?.[1]])
-        }
-        placeholder={`Min`}
-        className="w-24 border shadow rounded"
-      />
-      <input
-        type="number"
-        value={columnFilterValue?.[1] ?? ''}
-        onChange={(e) =>
-          column.setFilterValue((old) => [old?.[0], e.target.value])
-        }
-        placeholder={`Max`}
-        className="w-24 border shadow rounded"
-      />
-    </div>
-  ) : (
-    <input
-      type="text"
-      value={columnFilterValue ?? ''}
-      onChange={(e) => column.setFilterValue(e.target.value)}
-      placeholder={`Search...`}
-      className="w-36 border shadow rounded"
-    />
-  );
-}
-
-function IndeterminateCheckbox({ indeterminate, className = '', ...rest }) {
-  const ref = React.useRef(null);
-
-  React.useEffect(() => {
-    if (typeof indeterminate === 'boolean') {
-      ref.current.indeterminate = !rest.checked && indeterminate;
-    }
-  }, [ref, indeterminate]);
-
-  return (
-    <input
-      type="checkbox"
-      ref={ref}
-      className={className + ' cursor-pointer'}
-      {...rest}
-    />
-  );
-}
-
-export default Inicio;
+export default TreeGrid;
