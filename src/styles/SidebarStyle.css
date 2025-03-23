@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
 :root {
     --color-bg: #EBECF2;
     --color-surface: #FFFFFF;
@@ -10,51 +11,45 @@
     --user-bg-color: #FAFAFC;
 }
 
-
-/*ESTILOS GOBLAES PARA SIDEBAR*/
 .SidebarComponent{
     display: flex;
-    overflow: hidden;
-    flex-shrink: 0;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
     width: 15rem;
-    height: 100vh;
+    height: 100%;
     padding: 1.4rem 1rem 0 1rem;
     background-color: var(--color-surface);
     box-shadow: 1px 0px 10px var(--shadow-border);
     transition: width 0.5s ease;
 }
-
-
-/*V - INICIO*/
-.Header{
+.header{
     width: 100%;
-    position: relative;
 }
-/*MENU BUTTON - INICIO*/
 .menu-btn{
-    position: absolute;
+    position: relative;
     top: 3.5%;
-    right: -1.6rem;
-    align-items: center;
+    right: -13rem;
     display: flex;
+    align-items: center;
     justify-content: center;
     width: 1.75rem;
     height: 1.75rem;
     border-radius: 50%;
     background-color: #fff;
     color: #757575;
-    box-shadow: 2px 2px 5px var(--shadow-border);
+    box-shadow:  2px 2px 5px var(--shadow-border);
     cursor: pointer;
-    transition: right 0.3s ease;
+    transition: right 0.5s ease;
 }
+
 .menu-btn i{
     font-size: 1.5rem;
 }
-/*MENU BUTTON - FINAL*/
-/*TITULO Y LOGO - INICIO*/
+
+.brand img{
+    width: 2rem;
+}
 .brand{
     width: 100%;
     display: flex;
@@ -72,18 +67,20 @@
     font-weight: 600;
     color: var(--color-text-primary);
 }
-/*TITULO Y LOGO- FINAL*/
-/*ESTILOS DEL LOGO, EL TITULO Y EL ICONO - FINAL*/
 
 
-/*ESTILOS DEL CONTENEDOR DE MENU - INICIO*/
-.MenuContainer{
+
+.menu-container{
     display: flex;
+    width: 100%;
     height: 100%;
     flex-direction: column;
     align-items: center;
 }
-/*BUCADOR - INICIO*/
+
+
+
+
 .search{
     display: flex;
     width: 100%;
@@ -93,7 +90,7 @@
     box-shadow: 0 0 0 1px var(--color-border);
     cursor: pointer;
     transition: box-shadow 0.5s ease;
-} 
+}
 .search:hover{
     box-shadow: 0 0 0 1px var(--color-text-primary);
 }
@@ -102,7 +99,7 @@
     color: var(--color-text-secondary);
     padding: 0 0.8rem;
 }
-.search i:hover{
+.search:hover i{
     color: var(--color-text-primary);
 }
 .search input{
@@ -112,13 +109,16 @@
     background-color: transparent;
     color: var(--color-text-primary);
 }
-/*BUCADOR - FINAL*/
+
+
+
+
+
 .menu{
     width: 100%;
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-    cursor: pointer;
 }
 .menu .menu-item{
     position: relative;
@@ -127,16 +127,20 @@
 }
 .menu .menu-link{
     display: flex;
-    padding: 0.55rem;
+    padding: 0.55rem 0;
     color: var(--color-text-secondary);
     text-decoration: none;
     border-radius: 0.3rem;
 }
-.menu-item:hover .menu-link, 
-.sub-menu .Sub-menu-link:hover,
+.menu-item:hover .menu-link,
+.sub-menu .sub-menu-link:hover,
 .menu-item.active .menu-link{
     color: var(--color-text-primary);
     background-color: var(--color-bg);
+}
+.menu-link i:last-child{
+    margin-left: auto;
+    transition: transform 0.3s ease;
 }
 .menu-link i{
     font-size: 1.35rem;
@@ -144,32 +148,11 @@
 }
 .menu-link i:last-child{
     margin-left: auto;
+    transition: transform 0.3s ease;
 }
-.menu-link span{
-    font-size: 0.8rem;
-    font-weight: 500;
-}
-.sub-menu .Sub-menu-link{
-    display: flex;
-    margin-left: 2.5rem;
-    padding: 0.55rem 0.5rem;
-    font-size: 0.75rem;
-    font-weight: 500;
-    color: var(--color-text-secondary);
-    text-decoration: none;
-    border-radius: 0.3rem;
-}
-.sub-menu::before{
-    content: '';
-    position: absolute;
-    height: 100%;
-    width: 0.07rem;
-    margin-left: 1.4rem;
-    background-color: var(--color-border);
-}
-/*ESTILOS DEL CONTENEDOR DE MENU - FINAL*/
 
-/*ESTILOS DEL FOOTER - INICIO*/
+
+/* Footer */
 .footer{
     width: 100%;
     padding: 1rem 0;
@@ -196,12 +179,12 @@
     overflow: hidden;
     white-space: nowrap;
 }
-.name{
+.user-data .name{
     font-size: 0.8rem;
     font-weight: 600;
     color: var(--color-text-primary);
 }
-.email{
+.user-data .email{
     font-size: 0.7rem;
     color: var(--color-text-secondary);
 }
@@ -211,7 +194,36 @@
     align-items: center;
     justify-content: center;
     font-size: 1.5rem;
-    cursor: pointer;
     color: var(--color-text-secondary);
 }
-/*ESTILOS DEL FOOTER - FINAL*/
+
+/* Sidebar minimized */
+.SidebarComponent.minimize {
+    width: 4.94rem;
+  }
+  
+  .SidebarComponent.minimize .menu-btn {
+    right: -2.5rem;
+  }
+  
+  .SidebarComponent.minimize .search {
+    box-shadow: none;
+  }
+  
+  .SidebarComponent.minimize .search:hover {
+    background-color: var(--color-bg);
+  }
+  
+  .SidebarComponent.minimize .menu-link i:last-child {
+    display: none;
+  }
+  
+  .SidebarComponent.minimize .menu-item:hover span {
+    position: absolute;
+    left: 4.2rem;
+    padding: 0.5rem;
+    background-color: var(--color-tooltip-bg);
+    border-radius: 0.4rem;
+    color: var(--color-tooltip-text);
+    transition: all 0.3s ease;
+  }

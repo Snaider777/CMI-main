@@ -1,7 +1,8 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import TreeGrid from '../../pages/Inicio';         
-import ObjectiveDetail from '../global/ObjectiveDetail';    
+import ObjectiveDetail from '../global/ObjectiveDetail';   
+import '../../styles/MainStyle.css'; 
 
 function MainComponent() {
   return (
