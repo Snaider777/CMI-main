@@ -2,4 +2,6 @@
     padding: 1rem;
     height: 100vh;
     overflow: auto;
+    margin-left: 15rem; /*deja el espacio de la sidebar*/
+    flex-grow: 1; /*para ocupar el espacio restante*/
 }
