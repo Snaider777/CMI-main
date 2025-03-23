@@ -1,9 +1,9 @@
 import React from 'react';
-import '../styles/SidebarStyle.css';
+import '../../styles/SidebarStyle.css';
 import 'boxicons/css/boxicons.min.css';
 import { Link } from 'react-router-dom';
-import LOGO from '../icons/logoUSO.png';
-import user from '../icons/user.png';
+import LOGO from '../../icons/logoUSO.png';
+import user from '../../icons/user.png';
 
 function SidebarComponent() {
   return (
