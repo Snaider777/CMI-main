@@ -1,11 +1,12 @@
 import React from 'react'
 import Cards from '../components/locale/Cards';
+import '../styles/HomePageStyle.css';
 
 function HomePage() {
   return (
-    <div className='HomePage'>
+    <div className='CardsContainer'>
     <Cards 
-          title = 'OBJETIVO UNO'
+          title = 'Objetivo uno'
           value = '45%'
           interval = 'Ultimo año'
           trend = 'down'
@@ -15,7 +16,7 @@ function HomePage() {
           ]}
       />
       <Cards 
-          title = 'OBJETIVO DOS'
+          title = 'Objetivo dos'
           value = '75%'
           interval = 'Ultimo año'
           trend = 'neutral'
@@ -25,7 +26,7 @@ function HomePage() {
           ]}
           />
         <Cards 
-          title = 'OBJETIVO TRES'
+          title = 'Objetivo tres'
           value = '95%'
           interval = 'Ultimo año'
           trend = 'up'
