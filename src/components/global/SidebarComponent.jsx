@@ -31,21 +31,21 @@ function SidebarComponent() {
         </div>
 
         <ul className="menu">
-          <li className="menu-item menu-item-static active">
+          <li title='Inicio' className="menu-item menu-item-static active">
             <Link to={'/'} className="menu-link">
               <i className="bx bx-home-alt-2"></i>
               <span>Inicio</span>
             </Link>
           </li>
 
-          <li className="menu-item menu-item-static">
+          <li title='Panel' className="menu-item menu-item-static">
             <Link to={'/Panel'} className="menu-link">
               <i className="bx bx-bar-chart-alt-2"></i>
               <span>Panel</span>
             </Link>
           </li>
 
-          <li className="menu-item menu-item-static">
+          <li title='Usruarios' className="menu-item menu-item-static">
             <Link to={'/usuarios'} className="menu-link">
               <i className="bx bx-user"></i>
               <span>Usuarios</span>
@@ -56,14 +56,14 @@ function SidebarComponent() {
 
       <div className="footer">
         <ul className="menu">
-          <li className="menu-item menu-item-static">
+          <li title='Notificaciones' className="menu-item menu-item-static">
             <Link to={'/notificaciones'} className="menu-link">
               <i className="bx bx-bell"></i>
               <span>Notificaciones</span>
             </Link>
           </li>
 
-          <li className="menu-item menu-item-static">
+          <li title='Ajustes' className="menu-item menu-item-static">
             <Link to={'/ajuestes'} className="menu-link">
               <i className="bx bx-cog"></i>
               <span>Ajustes</span>
