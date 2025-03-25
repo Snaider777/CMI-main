@@ -188,8 +188,8 @@ function TreeGrid() {
         header: "Incluir",
         cell: ({ row, getValue }) => {
           // Solo mostramos el checkbox en subcomponentes
-          if (row.depth === 0) {
-            if (row.depth > 0) {
+          if (row.depth === 0 || row.depth === 1) {
+            if (row.depth >1) {
               return (
                 <input
                   type="number"
@@ -234,23 +234,20 @@ function TreeGrid() {
     ],
     []
   );
+  // Esta función solo toma en cuenta los subRows directos (depth = 1)
   const computeSubcomponentProgress = (rowData) => {
     let total = 0;
-    // Recorre recursivamente todos los subRows
-    const traverse = (nodes) => {
-      nodes.forEach((node) => {
-        if (node.include) {
-          // Suma el valor de progress
-          total += node.progress || 0;
-        }
-        if (node.subRows && node.subRows.length > 0) {
-          traverse(node.subRows);
-        }
-      });
-    };
-    if (rowData.subRows && rowData.subRows.length > 0) {
-      traverse(rowData.subRows);
+    // Si no hay subRows, no hay nada que sumar
+    if (!rowData.subRows) {
+      return total;
     }
+    // Recorremos únicamente los hijos directos
+    rowData.subRows.forEach((child) => {
+      // Si el child está marcado con include, sumamos su progress
+      if (child.include) {
+        total += child.progress || 0;
+      }
+    });
     return total;
   };
   const calculateTotalProgress = (rows) => {
