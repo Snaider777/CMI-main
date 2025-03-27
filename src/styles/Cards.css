@@ -1,0 +1,10 @@
+.CardContent {
+    height: "100%";
+    flex-grow: 1;
+}
+
+.StackContent {
+    justify-content: "space-between";
+    flex-grow: "1";
+    gap: 1
+}
