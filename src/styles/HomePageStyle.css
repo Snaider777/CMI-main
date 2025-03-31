@@ -1,10 +1,28 @@
-.CardsContainer{
+.CardsContainer {
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
+    flex-wrap: wrap; /* Permitir que los elementos se envuelvan a la siguiente línea */
+    justify-content: center; /* Centrar las tarjetas horizontalmente */
     width: 100%;
     gap: 1rem;
     padding-top: 10px;
-    margin: 10px 5px 20px 5px; 
-}
+    margin: 10px 5px 20px 5px;
+  }
+  
+  .CardsContainer > * {
+    flex: 0 0 calc(33.33% - 1rem); /* 3 tarjetas por fila, restando el gap */
+    max-width: calc(33.33% - 1rem); /* Asegura que no se excedan el ancho */
+  }
+  
+  @media (max-width: 768px) {
+    .CardsContainer > * {
+      flex: 0 0 calc(50% - 1rem); /* 2 tarjetas por fila en pantallas más pequeñas */
+      max-width: calc(50% - 1rem);
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .CardsContainer > * {
+      flex: 0 0 100%; /* 1 tarjeta por fila en pantallas muy pequeñas */
+      max-width: 100%;
+    }
+  }

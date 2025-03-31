@@ -8,6 +8,7 @@ import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import { SparkLineChart } from "@mui/x-charts/SparkLineChart";
 import { areaElementClasses } from "@mui/x-charts/LineChart";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from "recharts";
 
 function getDaysInMonth(month, year) {
   const date = new Date(year, month, 0);
@@ -31,22 +32,27 @@ function AreaGradient({ color, id }) {
   );
 }
 
-export default function Cards({ title, value, interval, trend, data }) {
+export default function Cards({
+  title,
+  value,
+  interval,
+  trend,
+  data,
+  percentageChange,
+  barChartData,
+}) {
   const theme = useTheme();
   const daysInWeek = getDaysInMonth(4, 2024);
-
   const trendColors = {
     up: theme.palette.success?.main || "green",
     down: theme.palette.error?.main || "red",
     neutral: theme.palette.warning?.[700] || "#FFB300",
   };
-
   const labelColors = {
     up: "success",
     down: "error",
     neutral: "default",
   };
-
   const color = labelColors[trend];
   const chartColor = trendColors[trend];
   const trendValues = { up: "+25%", down: "-25%", neutral: "+5%" };
@@ -59,35 +65,43 @@ export default function Cards({ title, value, interval, trend, data }) {
         </Typography>
         <Stack direction="column" className="StackContent">
           <Stack sx={{ justifyContent: "space-between" }}>
-            <Stack direction="row" sx={{ justifyContent: "space-between", alignItems: "center" }}>
+            <Stack
+              direction="row"
+              sx={{ justifyContent: "space-between", alignItems: "center" }}
+            >
               <Typography variant="h4" component="p">
                 {value}
               </Typography>
-              <Chip size="small" color={color} label={trendValues[trend]} />
+              <Chip size="small" color={color} label={percentageChange || trendValues[trend]} />
             </Stack>
             <Typography variant="caption" sx={{ color: "text.secondary" }}>
               {interval}
             </Typography>
           </Stack>
-          <Box sx={{ width: "100%", height: 50 }}>
-            <SparkLineChart
-              colors={[chartColor]}
-              data={data}
-              area
-              showHighlight
-              showTooltip
-              xAxis={{
-                scaleType: "band",
-                data: daysInWeek,
-              }}
-              sx={{
-                [`& .${areaElementClasses.root}`]: {
-                  fill: `url(#area-gradient-${value})`,
-                },
-              }}
-            >
-              <AreaGradient color={chartColor} id={`area-gradient-${value}`} />
-            </SparkLineChart>
+          <Box sx={{ width: "100%", height: barChartData ? 200 : 50 }}>
+            {barChartData ? (
+              <BarChart width={300} height={200} data={barChartData}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="name" />
+                <YAxis />
+                <Tooltip />
+                <Legend />
+                <Bar dataKey="views" stackId="a" fill={theme.palette.primary.light} />
+                <Bar dataKey="downloads" stackId="a" fill={theme.palette.primary.main} />
+              </BarChart>
+            ) : (
+              <SparkLineChart
+                colors={[chartColor]}
+                data={data}
+                area
+                showHighlight
+                showTooltip
+                xAxis={{ scaleType: "band", data: daysInWeek }}
+                sx={{ [`& .${areaElementClasses.root}`]: { fill: `url(#area-gradient-${value})` } }}
+              >
+                <AreaGradient color={chartColor} id={`area-gradient-${value}`} />
+              </SparkLineChart>
+            )}
           </Box>
         </Stack>
       </CardContent>
