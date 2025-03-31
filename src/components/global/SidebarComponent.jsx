@@ -3,7 +3,7 @@ import '../../styles/SidebarStyle.css';
 import 'boxicons/css/boxicons.min.css';
 import { Link } from 'react-router-dom';
 import LOGO from '../../icons/logoUSO.png';
-import user from '../../icons/user.png';
+import user from '../../icons/image.png';
 
 function SidebarComponent() {
   return (
@@ -121,11 +121,11 @@ function SidebarComponent() {
           </li>
         </ul>
         <div className="user">
-          <div className="user-img">
+          <div className="image-img">
             <img src={user} alt="" />
           </div>
           <div className="user-data">
-            <span className="name">Jonathan</span>
+            <span className="name">Eduardo</span>
             <span className="email">hola@uso.com</span>
           </div>
           <div className="user-icon">

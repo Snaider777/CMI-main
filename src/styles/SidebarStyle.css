@@ -179,11 +179,11 @@
     overflow: hidden;
     margin-top: 1rem;
 }
-.user-img{
+.image-img{
     display: flex;
     margin: 0 0.7rem 0 0.35rem;
 }
-.user-img img{
+.image-img img{
     width: 2.2rem;
     height: 2.2rem;
     object-fit: cover;
