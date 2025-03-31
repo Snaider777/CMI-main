@@ -1,23 +1,27 @@
 import { BarChart } from '@mui/x-charts/BarChart';
 import "../../styles/OE_card.css";
-import "../../styles/OE_chart.css";
 
-export default function OE_card({titulo, texto, color, BAR_CANTIDAD, BAR_DATOS }) {
-
-  const ArregloCantidad = BAR_CANTIDAD;
-  const ArregloDatos = BAR_DATOS;
-
+export default function OE_card({nombre, descripcion, BAR_CANTIDAD, BAR_DATOS }) {
   return (
     <div className='OE_card'>
-        <h1>{titulo}</h1>
-        <p>{texto}</p>
+        <h1>{nombre}</h1>
+        <p>{descripcion}</p>
         <div className='line'></div>
         <BarChart
-          xAxis={[{ scaleType: 'band', data: ArregloDatos }]}
-          series={[{ data: ArregloCantidad } ]}
-          width={400}
+          xAxis={[{ scaleType: 'band', data: BAR_DATOS}]}
+          yAxis={[{
+            colorMap: {
+              type: 'piecewise',
+              thresholds: [40, 80],
+              colors: ['red', 'orange', 'green'],
+            }
+          }]}
+          series={[{ data: BAR_CANTIDAD, id: 'serie' }]}
+          width={400} 
           height={250}
-          colors={color}
+          onItemClick={(event, context, index) => {
+            console.log(context)
+          }}
         />
     </div>
   )

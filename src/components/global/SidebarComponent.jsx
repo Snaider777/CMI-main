@@ -56,7 +56,7 @@ function SidebarComponent() {
           {/*MENU - USUARIOS INICIO*/}
           <li className="menu-item menu-item-dropdown">
             <div className="menu-link">
-              <i class='bx bx-user' ></i>
+              <i className='bx bx-user' ></i>
               <span>Usuarios</span>
               <i className="bx bx-chevron-down"></i>
             </div>
