@@ -1,6 +1,7 @@
 import React from 'react';
 import Cards from '../components/locale/Cards';
 import '../styles/HomePageStyle.css';
+import { Pie, PieChart } from 'recharts';
 
 function HomePage() {
   const barChartData1 = [

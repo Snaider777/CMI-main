@@ -126,7 +126,7 @@ function SidebarComponent() {
           </div>
           <div className="user-data">
             <span className="name">Eduardo</span>
-            <span className="email">hola@uso.com</span>
+            <span className="email">Iraheta@icloud.com</span>
           </div>
           <div className="user-icon">
             <i className="bx bx-exit"></i>
