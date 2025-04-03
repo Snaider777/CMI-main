@@ -1,29 +1,38 @@
 .CardsContainer {
-    display: flex;
-    flex-wrap: wrap; /* Permitir que los elementos se envuelvan a la siguiente línea */
-    justify-content: center; /* Centrar las tarjetas horizontalmente */
-    width: 100%;
-    gap: 1rem;
-    padding-top: 10px;
-    margin: 10px 5px 20px 5px;
-  }
-  
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  gap: 1rem;
+  padding-top: 10px;
+  margin: 10px 5px 20px 5px;
+}
+
+.CardsContainer > * {
+  flex: 0 0 calc(33.33% - 1rem);
+  max-width: calc(33.33% - 1rem);
+}
+
+@media (max-width: 768px) {
   .CardsContainer > * {
-    flex: 0 0 calc(33.33% - 1rem); /* 3 tarjetas por fila, restando el gap */
-    max-width: calc(33.33% - 1rem); /* Asegura que no se excedan el ancho */
+    flex: 0 0 calc(50% - 1rem);
+    max-width: calc(50% - 1rem);
   }
-  
-  @media (max-width: 768px) {
-    .CardsContainer > * {
-      flex: 0 0 calc(50% - 1rem); /* 2 tarjetas por fila en pantallas más pequeñas */
-      max-width: calc(50% - 1rem);
-    }
+}
+
+@media (max-width: 480px) {
+  .CardsContainer > * {
+    flex: 0 0 100%;
+    max-width: 100%;
   }
-  
-  @media (max-width: 480px) {
-    .CardsContainer > * {
-      flex: 0 0 100%; /* 1 tarjeta por fila en pantallas muy pequeñas */
-      max-width: 100%;
-    }
-  }
-  
+}
+
+.PieChartContainer {
+  width: 33.1%; /* O un ancho específico */
+  height: 300px; /* Ajusta la altura según sea necesario */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px; /* Espacio entre las tarjetas y el gráfico */
+  background-color: white; /* Color de fondo blanco */
+}

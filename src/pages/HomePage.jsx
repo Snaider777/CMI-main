@@ -1,30 +1,9 @@
-// pages/HomePage.js
-import DoughnutChart from '../components/locale/DoughnutChart';
-// import Cards from '../components/locale/Cards';
-import '../styles/HomePageStyle.css';
-
-const HomePage = () => {
-
-  //informacino apra los fgradicos de dona
-  const data = {
-    labels: ['Red', 'Blue', 'Yellow'],
-    datasets: [
-      {
-        label: 'My Dataset',
-        data: [300, 50, 100],
-        backgroundColor: ['#ff6384', '#36a2eb', '#ffce56'],
-        hoverBackgroundColor: ['#ff6384', '#36a2eb', '#ffce56'],
-      },
-    ],
-  };
-
-  const options = {
-    responsive: true,
-    maintainAspectRatio: false,
-  };
-
-  //informacion para el resto del grafic (ya estaban)
-   const barChartData1 = [
+import React from 'react'
+import { PieChart } from '@mui/x-charts/PieChart';
+import Cards from "../components/locale/Cards";
+import "../styles/HomePageStyle.css";
+function HomePage() {
+  const barChartData1 = [
     { name: 'Jan', views: 4000, downloads: 2400 },
     { name: 'Feb', views: 3000, downloads: 1398 },
     { name: 'Mar', views: 2000, downloads: 9800 },
@@ -51,15 +30,16 @@ const HomePage = () => {
     { name: 'Jun', views: 3585, downloads: 5700 },
   ];
 
+  const pieChartData = [
+    { value: 10, label: 'A' },
+    { value: 15, label: 'B' },
+    { value: 20, label: 'C' },
+    { value: 25, label: 'D' },
+    { value: 30, label: 'E' },
+  ];
   return (
+    <div>
     <div className="CardsContainer">
-      <h1>Dashboard</h1>
-      <div className="chart-row">
-        <DoughnutChart data={data} options={options} />
-        <DoughnutChart data={data} options={options} />
-        <DoughnutChart data={data} options={options} />
-      </div>
-          <div >
       <Cards
         title="Objetivo cuatro"
         value="45%"
@@ -93,9 +73,66 @@ const HomePage = () => {
           600, 880, 920,
         ]}
         />
+      <Cards
+        title="Objetivo Cuatro"
+        value="45%"
+        interval="Ultimo año"
+        trend="down"
+        data={[
+          200, 24, 220, 260, 240, 380, 100, 240, 280, 240, 300, 340, 320, 360,
+          340, 380, 360, 400, 380, 420, 400, 640, 340, 460, 440, 480, 460,
+          600, 880, 920,
+        ]}
+        percentageChange="-48%"
+        barChartData={barChartData1}
+      />
+      <Cards
+        title="Objetivo Cinco"
+        value="75%"
+        interval="Ultimo año"
+        trend="neutral"
+        data={[
+          200, 24, 220, 260, 240, 380, 100, 240, 280, 240, 300, 340, 320, 360,
+          340, 380, 360, 400, 380, 420, 400, 640, 340, 460, 440, 480, 460,
+          600, 880, 920,
+        ]}
+        percentageChange="-20%"
+        barChartData={barChartData2}
+      />
+      <Cards
+        title="Objetivo Seis"
+        value="95%"
+        interval="Ultimo año"
+        trend="up"
+        data={[
+          200, 24, 220, 260, 240, 380, 100, 240, 280, 240, 300, 340, 320, 360,
+          340, 380, 360, 400, 380, 420, 400, 640, 340, 460, 440, 480, 460,
+          600, 880, 920,
+        ]}
+        percentageChange="+15%"
+        barChartData={barChartData3}
+      />
+      
     </div>
+    <div className="PieChartContainer">
+      <PieChart
+        series={[
+          {
+            data: pieChartData,
+            innerRadius: 30,
+            outerRadius: 100,
+            paddingAngle: 5,
+            cornerRadius: 5,
+            startAngle: -45,
+            endAngle: 225,
+            cx: 150,
+            cy: 150,
+          },
+        ]}
+      />
+      </div>
     </div>
   );
-};
+}
 
 export default HomePage;
