@@ -131,6 +131,40 @@ function HomePage() {
         ]}
       />
       </div>
+      <div className="PieChartContainer2">
+      <PieChart
+        series={[
+          {
+            data: pieChartData,
+            innerRadius: 30,
+            outerRadius: 100,
+            paddingAngle: 5,
+            cornerRadius: 5,
+            startAngle: -45,
+            endAngle: 225,
+            cx: 150,
+            cy: 150,
+          },
+        ]}
+      />
+      </div>
+      <div className="PieChartContainer3">
+      <PieChart
+        series={[
+          {
+            data: pieChartData,
+            innerRadius: 30,
+            outerRadius: 100,
+            paddingAngle: 5,
+            cornerRadius: 5,
+            startAngle: -45,
+            endAngle: 225,
+            cx: 150,
+            cy: 150,
+          },
+        ]}
+      />
+      </div>
     </div>
   );
 }

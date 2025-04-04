@@ -36,3 +36,21 @@
   margin-top: 20px; /* Espacio entre las tarjetas y el gráfico */
   background-color: white; /* Color de fondo blanco */
 }
+.PieChartContainer2 {
+  width: 33.1%; /* O un ancho específico */
+  height: 300px; /* Ajusta la altura según sea necesario */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px; /* Espacio entre las tarjetas y el gráfico */
+  background-color: white; /* Color de fondo blanco */
+}
+.PieChartContainer3 {
+  width: 33.1%; /* O un ancho específico */
+  height: 300px; /* Ajusta la altura según sea necesario */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px; /* Espacio entre las tarjetas y el gráfico */
+  background-color: white; /* Color de fondo blanco */
+}
