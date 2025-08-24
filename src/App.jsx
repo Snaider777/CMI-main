@@ -1,44 +1,15 @@
-import '../src/styles/App.css'
-import { Routes, Route } from 'react-router-dom'
-import HomePage from './pages/HomePage'
-import Dimencion1 from './pages/D1_page'
-import Dimencion2 from './pages/D2_page'
-import LoginPage from './pages/LoginPage'
-import PrivateRoute from './router/PrivateRoute'
-
+import React from 'react';
+import './App.css';
+import SidebarComponent from './components/global/SidebarComponent';
+import MainComponent from './components/global/MainComponent';
+import { BrowserRouter as Router } from 'react-router-dom';
 function App() {
   return (
-    <div className="Home">
-        <Routes>
-          <Route path="/login" element={<LoginPage />} />
-          {/* Rutas protegidas */}
-        <Route 
-          path="/" 
-          element={
-            <PrivateRoute>
-              <HomePage />
-            </PrivateRoute>
-          } 
-        />
-        <Route 
-          path="/d1" 
-          element={
-            <PrivateRoute>
-              <Dimencion1 />
-            </PrivateRoute>
-          } 
-        />
-        <Route 
-          path="/d2" 
-          element={
-            <PrivateRoute>
-              <Dimencion2 />
-            </PrivateRoute>
-          } 
-        />
-        </Routes>
-    </div>
-  )
+      <div className="App">
+        <SidebarComponent />
+        <MainComponent /> 
+      </div>
+  );
 }
 
-export default App
+export default App;

@@ -1,0 +1,102 @@
+/* Container y fuentes básicas */
+.treegrid-container {
+    width: 100%;
+    max-width: 100%;
+} 
+.treegrid-table {
+    width: 100%;
+}
+/* Toolbar para el botón global */
+.toolbar {
+    margin-bottom: 10px;
+}
+/* Botones genéricos */
+.btn {
+    border: none;
+    padding: 4px 8px;
+    margin: 0 2px;
+    font-size: 12px;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: opacity 0.2s ease;
+}
+.btn:hover {
+    opacity: 0.8;
+}
+/* Botón global para agregar un objetivo */
+.btn-global-create {
+    background-color: #4caf50;
+    color: white;
+}
+/* Botones individuales para CRUD */
+.btn-create {
+    background-color: #2196f3;
+    color: white;
+}
+.btn-edit {
+    background-color: #ff9800;
+    color: white;
+}
+.btn-delete {
+    background-color: #f44336;
+    color: white;
+}
+/* Estilos para la tabla */
+.treegrid-header-row {
+    background-color: #f1f1f1;
+    border-bottom: 2px solid #ccc;
+}
+.treegrid-header-cell {
+    padding: 8px;
+    text-align: left;
+    border-right: 1px solid #ddd;
+    font-weight: bold;
+}
+.treegrid-header-cell:last-child {
+    border-right: none;
+}
+.treegrid-row {
+    border-bottom: 1px solid #eee;
+}
+.treegrid-cell {
+    padding: 8px;
+    border-right: 1px solid #ddd;
+}
+.treegrid-cell:last-child {
+    border-right: none;
+}
+/* Celda de la columna OBJETIVOS y botones de acción */
+.obj-cell {
+    display: flex;
+    align-items: center;
+}
+.expand-btn {
+    background: none;
+    border: none;
+    margin-right: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 14px;
+}
+.obj-text {
+    margin-right: 10px;
+}
+.obj-link {
+    text-decoration: none;
+    color: #333;
+    margin-right: 10px;
+}
+/* Contenedor de botones CRUD en cada fila */
+.crud-buttons {
+    margin-left: auto;
+    display: flex;
+    gap: 4px;
+}
+/* Responsividad */
+@media (max-width: 600px) {
+    .treegrid-table,
+    .treegrid-header-cell,
+    .treegrid-cell {
+        font-size: 12px;
+    }
+}
