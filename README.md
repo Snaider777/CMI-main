@@ -1,12 +1,27 @@
-# React + Vite
+## Proyecto CMI – Universidad de Sonsonate
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+El Proyecto CMI (Control y Manejo de Información) es una aplicación web desarrollada para la Universidad de Sonsonate, con el objetivo de optimizar la gestión y administración de documentación e información institucional.
 
-Currently, two official plugins are available:
+Construido con React y ejecutado en un entorno de desarrollo rápido con Vite, el proyecto incorpora CSS para un diseño claro, responsivo y fácil de usar, asegurando una experiencia accesible tanto en dispositivos móviles como de escritorio.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Características principales
 
-## Expanding the ESLint configuration
+⚡ Desempeño optimizado gracias a la integración de Vite como servidor de desarrollo
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+⚛️ Componentes reutilizables construidos con React para mayor escalabilidad
+
+🎨 Interfaz moderna y responsiva utilizando CSS puro
+
+📂 Gestión eficiente de información, adaptada a las necesidades institucionales de la universidad
+
+## 🛠️ Tecnologías utilizadas
+
+React – Librería de JavaScript para construir interfaces de usuario dinámicas
+
+Vite – Servidor de desarrollo rápido y optimizado para proyectos modernos
+
+CSS – Lenguaje de estilos para diseño adaptable y personalizable
+
+## 🎯 Propósito
+
+Este proyecto fue desarrollado como parte de una iniciativa universitaria enfocada en la innovación tecnológica y la aplicación práctica de conocimientos de desarrollo web. Representa una solución real para el manejo de información institucional, a la vez que demuestra habilidades en React, optimización con Vite y diseño web responsivo.
